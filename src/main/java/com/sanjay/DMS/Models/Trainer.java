@@ -1,13 +1,17 @@
-package com.bodlapatiClasses.DMS.Models;
+package com.sanjay.DMS.Models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+
 /**
-* @author Sowmya Reddy Bodlapati
+* @author Sanjay Kumar Pilli
 *
 */
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity
 public class Trainer {
+
 	@Id
 	private int trainerId;
 	private String trainerName;
@@ -15,17 +19,17 @@ public class Trainer {
 	public int getTrainerId() {
 		return trainerId;
 	}
-	public void setTrainerId(int trainerId) {
-		this.trainerId = trainerId;
-	}
 	public String getTrainerName() {
 		return trainerName;
 	}
-	public void setTrainerName(String trainerName) {
-		this.trainerName = trainerName;
-	}
 	public String getTrainerAddress() {
 		return trainerAddress;
+	}
+	public void setTrainerId(int trainerId) {
+		this.trainerId = trainerId;
+	}
+	public void setTrainerName(String trainerName) {
+		this.trainerName = trainerName;
 	}
 	public void setTrainerAddress(String trainerAddress) {
 		this.trainerAddress = trainerAddress;
@@ -35,6 +39,5 @@ public class Trainer {
 		return "Trainer [trainerId=" + trainerId + ", trainerName=" + trainerName + ", trainerAddress=" + trainerAddress
 				+ "]";
 	}
-	
-	
+
 }

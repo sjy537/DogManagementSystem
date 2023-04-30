@@ -1,10 +1,12 @@
-package com.bodlapatiClasses.DMS;
-/**
-* @author Sowmya Reddy Bodlapati
-*
-*/
+package com.sanjay.DMS;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+* @author Sanjay Kumar Pilli
+*
+*/
 
 @SpringBootApplication
 public class DogsManagementSystemApplication {

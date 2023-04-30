@@ -1,31 +1,29 @@
-package com.bodlapatiClasses.DMS.Controllers;
+package com.sanjay.DMS.Controllers;
 
-/**
-* @author Sowmya Reddy Bodlapati
-*
-*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bodlapatiClasses.DMS.Models.Dog;
-import com.bodlapatiClasses.DMS.Models.Trainer;
-import com.bodlapatiClasses.DMS.repository.DogRepository;
-import com.bodlapatiClasses.DMS.repository.TrainerRepository;
-
-import java.util.List;
-import java.util.Optional;
+import com.sanjay.DMS.Models.Dog;
+import com.sanjay.DMS.Models.Trainer;
+import com.sanjay.DMS.repository.DogRepository;
+import com.sanjay.DMS.repository.TrainerRepository;
+/**
+* @author Sanjay Kumar Pilli
+*
+*/
 
 @Controller
 public class DogController {
+
 	ModelAndView mv = new ModelAndView();
+	
 	@Autowired
 	DogRepository dogRepo;
 	@Autowired
 	TrainerRepository trainerRepo;
-	
+
 //	@RequestMapping("dogHome")
 //	public String home() {
 //		return "home";
@@ -40,14 +38,14 @@ public class DogController {
 	@RequestMapping("add")
 	public ModelAndView add() {
 		mv.setViewName("addNewDog.html");
-		Iterable<Trainer> trainerList = trainerRepo.findAll();
-		mv.addObject("trainers", trainerList);
+		 Iterable<Trainer> trainerList = trainerRepo.findAll();
+			mv.addObject("trainers", trainerList);
 		return mv;
 	}
 	
 	@RequestMapping("addNewDog")
-	public ModelAndView addNewDog(Dog dog, @RequestParam("trainerId") int id) {
-		Trainer trainer = trainerRepo.findById(id).orElse(new Trainer());
+	public ModelAndView addNewDog(Dog dog, @org.springframework.web.bind.annotation.RequestParam("trainerId") int id) {
+		Trainer trainer =  trainerRepo.findById(id).orElse(new Trainer());
 		dog.setTrainer(trainer);
 		dogRepo.save(dog);
 		mv.setViewName("home");
@@ -58,6 +56,7 @@ public class DogController {
 	public ModelAndView addTrainer() {
 		mv.setViewName("addNewTrainer");
 		return mv;
+		
 	}
 	
 	@RequestMapping("trainerAdded")
@@ -65,6 +64,7 @@ public class DogController {
 		trainerRepo.save(trainer);
 		mv.setViewName("home");
 		return mv;
+		
 	}
 	
 	@RequestMapping("viewModifyDelete")
@@ -84,26 +84,26 @@ public class DogController {
 	
 	@RequestMapping("deleteDog")
 	public ModelAndView deleteDog(Dog dog) {
-//		//based in id
-//		Optional<Dog> dogFound = dogRepo.findById(dog.getId());
-//		if(dogFound.isPresent()) {
-//			dogRepo.delete(dog);
-//		}
-//		return home();
+		//based in id
+		//		Optional<Dog> dogFound = dogRepo.findById(dog.getId());
+		//		if(dogFound.isPresent()) {
+		//			dogRepo.delete(dog);
+		//		}
+		//		return home();
+
+
+		// based on the name
+		//	List<Dog> dogsFound = dogRepo.findByName(dog.getName());
+		//	for(Dog c : dogsFound) {
+		//		dogRepo.delete(c);
+		//		
+		//	}
+		//	return home();
 		
-		//based on the name 
-		
-//		 List<Dog> dogsFound = dogRepo.findByName(dog.getName());
-//		 for(Dog d : dogsFound) {
-//			 dogRepo.delete(d);
-//		 }
-//		 return home();
-		
-		Dog d = dogRepo.findById(dog.getId()).orElse(new Dog());
-		dogRepo.delete(d);
+		Dog c = dogRepo.findById(dog.getId()).orElse(new Dog());
+		dogRepo.delete(c);
 		return home();
 	}
-	
 	@RequestMapping("search")
 	public ModelAndView searchById(int id) {
 		Dog dogFound = dogRepo.findById(id).orElse(new Dog());
@@ -111,4 +111,6 @@ public class DogController {
 		mv.setViewName("searchResults");
 		return mv;
 	}
+	
+	
 }
