@@ -1,6 +1,7 @@
 FROM maven:3.8.2-jdk-11 AS build
 COPY . .
-RUN mvn -Pprod -DskipTests
+RUN mvn package -Pprod -DskipTests
+
 
 
 FROM openjdk:11-jdk-slim
